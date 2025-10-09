@@ -1,0 +1,119 @@
+╔══════════════════════════════════════════════════════════════════╗
+║     GTP API Gravity Calculator - Quick Start Guide              ║
+╚══════════════════════════════════════════════════════════════════╝
+
+📱 CROSS-PLATFORM REACT NATIVE APP - iOS, Android & Web Ready!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 TO RUN THE APP:
+
+1. Open Terminal and navigate to the project:
+   
+   cd /Users/admin/Developer/GammonToolboxApp
+
+2. Start the development server:
+   
+   npm start
+
+3. Choose how to view:
+   
+   • Press 'w' → Opens in web browser (EASIEST!)
+   • Press 'i' → Opens iOS Simulator (needs Xcode)
+   • Press 'a' → Opens Android Emulator (needs Android Studio)
+   • Scan QR code → Use Expo Go app on your phone
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 WHAT'S INCLUDED:
+
+✅ API Gravity Correction Calculator
+   → Input: API Gravity, Temperature, Fuel Type
+   → Output: Corrected API Gravity
+   → Fuel Types: Gasoline, Diesel, Jet A/Kerosene
+   → Temp Units: Fahrenheit & Celsius
+
+✅ Weight from Volume Calculator
+   → Input: Volume (Gallons or Litres)
+   → Output: Weight (lbs or kgs)
+   → Uses calculated density from API correction
+
+✅ Contact Information
+   → Links to website and email
+   → Company details
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🛠️ INSTALLED TOOLS:
+
+✅ Node.js v24.9.0
+✅ npm v11.6.0
+✅ Expo ~54.0.12
+✅ React Native 0.81.4
+✅ CocoaPods v1.16.2 (for iOS)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📱 TEST ON YOUR PHONE (NO SIMULATOR NEEDED):
+
+1. Download "Expo Go" app from App Store or Play Store
+2. Run: npm start
+3. Scan the QR code that appears
+4. App opens on your phone instantly!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📚 DOCUMENTATION:
+
+• README.md          → Full project documentation
+• SETUP.md           → Detailed setup instructions
+• PROJECT_SUMMARY.md → Complete technical overview
+• QUICK_START.txt    → This file
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 ONE CODEBASE, THREE PLATFORMS:
+
+    ┌─────────┐       ┌─────────┐       ┌─────────┐
+    │   iOS   │       │ Android │       │   Web   │
+    │  App    │       │  App    │       │  App    │
+    └────┬────┘       └────┬────┘       └────┬────┘
+         │                 │                  │
+         └─────────────────┴──────────────────┘
+                          │
+                   ┌──────▼──────┐
+                   │   App.js    │
+                   │ (400 lines) │
+                   └─────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎨 MATCHES ORIGINAL ANDROID DESIGN:
+
+✅ Same blue header (#003366)
+✅ Same white background
+✅ Same button styles and colors
+✅ Same calculation flow
+✅ Same contact information
+✅ Professional, clean UI
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📞 SUPPORT:
+
+Gammon Technical Products
+2300 Highway 34
+Manasquan, NJ 08736
+
+Phone: 732-223-4600
+Email: info@gammontech.com
+Web: www.gammontech.com
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ STATUS: READY FOR TESTING!
+
+Run "npm start" and press 'w' to see it in your browser NOW!
+
+╚══════════════════════════════════════════════════════════════════╝
+

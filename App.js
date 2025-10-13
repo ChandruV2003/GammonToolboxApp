@@ -282,11 +282,11 @@ export default function App() {
 
             {correctedAPI ? (
               <View style={styles.statusCard}>
-                <Text style={styles.statusText}>✅ API Gravity Calculated</Text>
+                <Text style={styles.statusText}>● API Gravity Calculated</Text>
               </View>
             ) : (
               <View style={styles.statusCard}>
-                <Text style={styles.statusText}>⚠️ Calculate API Gravity First</Text>
+                <Text style={styles.statusText}>◐ Calculate API Gravity First</Text>
               </View>
             )}
 
@@ -342,10 +342,10 @@ export default function App() {
               <Text style={styles.contactSubtitle}>Contact Gammon Technical Products</Text>
               <View style={styles.contactButtons}>
                 <View style={styles.contactButton}>
-                  <Text style={styles.contactButtonText}>🌐 Visit Website</Text>
+                  <Text style={styles.contactButtonText}>◉ Visit Website</Text>
                 </View>
                 <View style={styles.contactButton}>
-                  <Text style={styles.contactButtonText}>📧 Email Support</Text>
+                  <Text style={styles.contactButtonText}>◈ Email Support</Text>
                 </View>
               </View>
             </View>
@@ -524,9 +524,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   statusCard: {
-    backgroundColor: '#fff5f5',
-    borderLeftWidth: 4,
-    borderLeftColor: '#e53e3e',
+    backgroundColor: '#f8fafc',
+    borderWidth: 1,
+    borderColor: '#e2e8f0',
     padding: 12,
     borderRadius: 8,
     marginBottom: 16,
@@ -534,7 +534,7 @@ const styles = StyleSheet.create({
   statusText: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#e53e3e',
+    color: '#4a5568',
     textAlign: 'center',
   },
   buttonRow: {

@@ -5,6 +5,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Pressable,
   ScrollView,
   SafeAreaView,
   StatusBar,
@@ -264,12 +265,24 @@ export default function App() {
             ) : null}
 
             <View style={styles.buttonRow}>
-              <TouchableOpacity style={styles.primaryButton} onPress={calculateAPI}>
+              <Pressable 
+                style={({ pressed }) => [
+                  styles.primaryButton,
+                  pressed && styles.primaryButtonPressed
+                ]}
+                onPress={calculateAPI}
+              >
                 <Text style={styles.primaryButtonText}>Calculate API</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.secondaryButton} onPress={resetAPISection}>
-                <Text style={styles.secondaryButtonText}>Reset</Text>
-              </TouchableOpacity>
+              </Pressable>
+              <Pressable 
+                style={({ pressed }) => [
+                  styles.resetButton,
+                  pressed && styles.resetButtonPressed
+                ]}
+                onPress={resetAPISection}
+              >
+                <Text style={styles.resetButtonText}>Reset</Text>
+              </Pressable>
             </View>
           </View>
 
@@ -320,18 +333,28 @@ export default function App() {
             ) : null}
 
             <View style={styles.buttonRow}>
-              <TouchableOpacity 
-                style={[styles.primaryButton, !correctedAPI && styles.disabledButton]} 
+              <Pressable 
+                style={({ pressed }) => [
+                  styles.primaryButton, 
+                  !correctedAPI && styles.disabledButton,
+                  pressed && !correctedAPI && styles.primaryButtonPressed
+                ]}
                 onPress={calculateWeight}
                 disabled={!correctedAPI}
               >
                 <Text style={[styles.primaryButtonText, !correctedAPI && styles.disabledButtonText]}>
                   Calculate Weight
                 </Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.secondaryButton} onPress={resetVolumeSection}>
-                <Text style={styles.secondaryButtonText}>Reset</Text>
-              </TouchableOpacity>
+              </Pressable>
+              <Pressable 
+                style={({ pressed }) => [
+                  styles.resetButton,
+                  pressed && styles.resetButtonPressed
+                ]}
+                onPress={resetVolumeSection}
+              >
+                <Text style={styles.resetButtonText}>Reset</Text>
+              </Pressable>
             </View>
           </View>
 
@@ -367,7 +390,7 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: 'transparent',
-    paddingTop: 40,
+    paddingTop: 20,
     paddingBottom: 20,
     paddingHorizontal: 20,
   },
@@ -588,25 +611,36 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
   },
-  secondaryButton: {
+  primaryButtonPressed: {
+    backgroundColor: '#2c5282',
+    transform: [{ scale: 0.98 }],
+  },
+  resetButton: {
     flex: 1,
     backgroundColor: '#ffffff',
     borderWidth: 1.5,
-    borderColor: '#e2e8f0',
+    borderColor: '#e53e3e',
     paddingVertical: 18,
     paddingHorizontal: 24,
     borderRadius: 16,
     alignItems: 'center',
-    shadowColor: '#000',
+    justifyContent: 'center',
+    shadowColor: '#e53e3e',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.04,
+    shadowOpacity: 0.1,
     shadowRadius: 6,
     elevation: 3,
   },
-  secondaryButtonText: {
-    color: '#4a5568',
+  resetButtonText: {
+    color: '#e53e3e',
     fontSize: 16,
     fontWeight: '600',
+    textAlign: 'center',
+  },
+  resetButtonPressed: {
+    backgroundColor: '#fed7d7',
+    borderColor: '#c53030',
+    transform: [{ scale: 0.98 }],
   },
   disabledButton: {
     backgroundColor: '#a0aec0',

@@ -282,7 +282,7 @@ export default function App() {
 
             {correctedAPI ? (
               <View style={[styles.statusCard, styles.statusSuccess]}>
-                <Text style={[styles.statusText, { color: '#22543d' }]}>▲ API Gravity Calculated</Text>
+                <Text style={[styles.statusText, { color: '#22543d' }]}>● API Gravity Calculated</Text>
               </View>
             ) : (
               <View style={[styles.statusCard, styles.statusWarning]}>
@@ -342,10 +342,10 @@ export default function App() {
               <Text style={styles.contactSubtitle}>Contact Gammon Technical Products</Text>
               <View style={styles.contactButtons}>
                 <View style={styles.contactButton}>
-                  <Text style={styles.contactButtonText}>▲ Visit Website</Text>
+                  <Text style={styles.contactButtonText}>◉ Visit Website</Text>
                 </View>
                 <View style={styles.contactButton}>
-                  <Text style={styles.contactButtonText}>▲ Email Support</Text>
+                  <Text style={styles.contactButtonText}>✉ Email Support</Text>
                 </View>
               </View>
             </View>
@@ -359,7 +359,7 @@ export default function App() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#1a365d',
+    backgroundColor: '#f7fafc',
   },
   container: {
     flex: 1,
@@ -367,8 +367,8 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: 'transparent',
-    paddingTop: 60,
-    paddingBottom: 30,
+    paddingTop: 40,
+    paddingBottom: 20,
     paddingHorizontal: 20,
   },
   headerGradient: {
@@ -453,11 +453,14 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: '#e2e8f0',
     borderRadius: 16,
-    padding: 18,
-    fontSize: 16,
+    paddingVertical: 18,
+    paddingHorizontal: 18,
+    fontSize: 17,
     backgroundColor: '#ffffff',
     color: '#2d3748',
-    fontWeight: '500',
+    fontWeight: '400',
+    textAlignVertical: 'center',
+    includeFontPadding: false,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,

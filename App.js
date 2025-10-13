@@ -281,12 +281,12 @@ export default function App() {
             </View>
 
             {correctedAPI ? (
-              <View style={styles.statusCard}>
-                <Text style={styles.statusText}>● API Gravity Calculated</Text>
+              <View style={[styles.statusCard, styles.statusSuccess]}>
+                <Text style={[styles.statusText, { color: '#22543d' }]}>▲ API Gravity Calculated</Text>
               </View>
             ) : (
-              <View style={styles.statusCard}>
-                <Text style={styles.statusText}>◐ Calculate API Gravity First</Text>
+              <View style={[styles.statusCard, styles.statusWarning]}>
+                <Text style={[styles.statusText, { color: '#c05621' }]}>▲ Calculate API Gravity First</Text>
               </View>
             )}
 
@@ -342,10 +342,10 @@ export default function App() {
               <Text style={styles.contactSubtitle}>Contact Gammon Technical Products</Text>
               <View style={styles.contactButtons}>
                 <View style={styles.contactButton}>
-                  <Text style={styles.contactButtonText}>◉ Visit Website</Text>
+                  <Text style={styles.contactButtonText}>▲ Visit Website</Text>
                 </View>
                 <View style={styles.contactButton}>
-                  <Text style={styles.contactButtonText}>◈ Email Support</Text>
+                  <Text style={styles.contactButtonText}>▲ Email Support</Text>
                 </View>
               </View>
             </View>
@@ -366,31 +366,37 @@ const styles = StyleSheet.create({
     backgroundColor: '#f7fafc',
   },
   header: {
-    backgroundColor: '#1a365d',
-    paddingTop: 20,
-    paddingBottom: 25,
+    backgroundColor: 'transparent',
+    paddingTop: 60,
+    paddingBottom: 30,
     paddingHorizontal: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
   },
   headerGradient: {
     alignItems: 'center',
+    backgroundColor: '#1a365d',
+    borderRadius: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 24,
+    shadowColor: '#1a365d',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.3,
+    shadowRadius: 16,
+    elevation: 8,
   },
   headerTitle: {
-    fontSize: 28,
-    fontWeight: '700',
+    fontSize: 32,
+    fontWeight: '800',
     color: '#ffffff',
-    marginBottom: 4,
+    marginBottom: 6,
     textAlign: 'center',
+    letterSpacing: -0.5,
   },
   headerSubtitle: {
     fontSize: 16,
     color: '#e2e8f0',
     textAlign: 'center',
-    fontWeight: '400',
+    fontWeight: '500',
+    opacity: 0.9,
   },
   scrollView: {
     flex: 1,
@@ -401,16 +407,16 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: '#ffffff',
-    borderRadius: 16,
-    padding: 20,
+    borderRadius: 20,
+    padding: 24,
     marginBottom: 20,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 4,
-    borderWidth: 1,
-    borderColor: '#e2e8f0',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.06,
+    shadowRadius: 12,
+    elevation: 6,
+    borderWidth: 0.5,
+    borderColor: '#f1f5f9',
   },
   cardHeader: {
     marginBottom: 20,
@@ -444,14 +450,19 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   input: {
-    borderWidth: 2,
+    borderWidth: 1.5,
     borderColor: '#e2e8f0',
-    borderRadius: 12,
-    padding: 16,
+    borderRadius: 16,
+    padding: 18,
     fontSize: 16,
     backgroundColor: '#ffffff',
     color: '#2d3748',
     fontWeight: '500',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 2,
   },
   fuelTypeContainer: {
     marginBottom: 20,
@@ -524,17 +535,22 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   statusCard: {
-    backgroundColor: '#f8fafc',
-    borderWidth: 1,
-    borderColor: '#e2e8f0',
     padding: 12,
-    borderRadius: 8,
+    borderRadius: 12,
     marginBottom: 16,
+    borderWidth: 1,
+  },
+  statusSuccess: {
+    backgroundColor: '#f0fff4',
+    borderColor: '#9ae6b4',
+  },
+  statusWarning: {
+    backgroundColor: '#fffaf0',
+    borderColor: '#fbd38d',
   },
   statusText: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#4a5568',
     textAlign: 'center',
   },
   buttonRow: {
@@ -545,15 +561,15 @@ const styles = StyleSheet.create({
   primaryButton: {
     flex: 2,
     backgroundColor: '#3182ce',
-    paddingVertical: 16,
-    paddingHorizontal: 24,
-    borderRadius: 12,
+    paddingVertical: 18,
+    paddingHorizontal: 28,
+    borderRadius: 16,
     alignItems: 'center',
     shadowColor: '#3182ce',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 6,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.25,
+    shadowRadius: 12,
+    elevation: 8,
   },
   primaryButtonText: {
     color: '#ffffff',
@@ -563,12 +579,17 @@ const styles = StyleSheet.create({
   secondaryButton: {
     flex: 1,
     backgroundColor: '#ffffff',
-    borderWidth: 2,
+    borderWidth: 1.5,
     borderColor: '#e2e8f0',
-    paddingVertical: 16,
+    paddingVertical: 18,
     paddingHorizontal: 24,
-    borderRadius: 12,
+    borderRadius: 16,
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 6,
+    elevation: 3,
   },
   secondaryButtonText: {
     color: '#4a5568',

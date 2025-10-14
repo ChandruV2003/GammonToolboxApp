@@ -215,165 +215,168 @@ export default function App() {
           </View>
         </View>
 
-        <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
-          {/* API Correction Section */}
-          <View style={styles.card}>
-            <View style={styles.cardHeader}>
-              <Text style={styles.cardTitle}>API Correction</Text>
-              <View style={styles.cardTitleUnderline} />
-            </View>
-
-            <FuelTypeSelector />
-
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>Temperature</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Enter Temperature"
-                placeholderTextColor="#a0a0a0"
-                keyboardType="numeric"
-                value={temperature}
-                onChangeText={setTemperature}
-              />
-            </View>
-
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>Temperature Unit</Text>
-              <SegmentedControl
-                options={['Fahrenheit', 'Celsius']}
-                selectedValue={tempUnit}
-                onValueChange={setTempUnit}
-              />
-            </View>
-
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>API Gravity</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Enter API Gravity"
-                placeholderTextColor="#a0a0a0"
-                keyboardType="numeric"
-                value={apiGravity}
-                onChangeText={setApiGravity}
-              />
-            </View>
-
-            {correctedAPI ? (
-              <View style={styles.resultCard}>
-                <Text style={styles.resultText}>{correctedAPI}</Text>
+        {/* Step-by-Step Process */}
+        <View style={styles.processContainer}>
+          {/* Step 1: API Correction */}
+          <View style={styles.stepContainer}>
+            <View style={styles.stepHeader}>
+              <View style={[styles.stepNumber, correctedAPI ? styles.stepNumberComplete : styles.stepNumberActive]}>
+                <Text style={styles.stepNumberText}>1</Text>
               </View>
-            ) : null}
+              <Text style={styles.stepTitle}>API Gravity Correction</Text>
+            </View>
 
-            <View style={styles.buttonRow}>
-              <Pressable 
-                style={({ pressed }) => [
-                  styles.primaryButton,
-                  pressed && styles.primaryButtonPressed
-                ]}
-                onPress={calculateAPI}
-              >
-                <Text style={styles.primaryButtonText}>Calculate API</Text>
-              </Pressable>
-              <Pressable 
-                style={({ pressed }) => [
-                  styles.resetButton,
-                  pressed && styles.resetButtonPressed
-                ]}
-                onPress={resetAPISection}
-              >
-                <Text style={styles.resetButtonText}>Reset</Text>
-              </Pressable>
+            <View style={styles.stepCard}>
+              <FuelTypeSelector />
+
+              <View style={styles.inputRow}>
+                <View style={[styles.inputGroup, styles.halfWidth]}>
+                  <Text style={styles.label}>Temperature</Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Enter Temperature"
+                    placeholderTextColor="#a0a0a0"
+                    keyboardType="numeric"
+                    value={temperature}
+                    onChangeText={setTemperature}
+                  />
+                </View>
+                <View style={[styles.inputGroup, styles.halfWidth]}>
+                  <Text style={styles.label}>Unit</Text>
+                  <SegmentedControl
+                    options={['Fahrenheit', 'Celsius']}
+                    selectedValue={tempUnit}
+                    onValueChange={setTempUnit}
+                  />
+                </View>
+              </View>
+
+              <View style={styles.inputGroup}>
+                <Text style={styles.label}>API Gravity</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter API Gravity"
+                  placeholderTextColor="#a0a0a0"
+                  keyboardType="numeric"
+                  value={apiGravity}
+                  onChangeText={setApiGravity}
+                />
+              </View>
+
+              {correctedAPI ? (
+                <View style={styles.resultCard}>
+                  <Text style={styles.resultText}>{correctedAPI}</Text>
+                </View>
+              ) : null}
+
+              <View style={styles.buttonRow}>
+                <Pressable 
+                  style={({ pressed }) => [
+                    styles.primaryButton,
+                    pressed && styles.primaryButtonPressed
+                  ]}
+                  onPress={calculateAPI}
+                >
+                  <Text style={styles.primaryButtonText}>Calculate API</Text>
+                </Pressable>
+                <Pressable 
+                  style={({ pressed }) => [
+                    styles.resetButton,
+                    pressed && styles.resetButtonPressed
+                  ]}
+                  onPress={resetAPISection}
+                >
+                  <Text style={styles.resetButtonText}>Reset</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
 
-          {/* Weight Calculation Section */}
-          <View style={styles.card}>
-            <View style={styles.cardHeader}>
-              <Text style={styles.cardTitle}>Weight Calculator</Text>
-              <View style={styles.cardTitleUnderline} />
+          {/* Step 2: Weight Calculation */}
+          <View style={styles.stepContainer}>
+            <View style={styles.stepHeader}>
+              <View style={[styles.stepNumber, correctedAPI ? styles.stepNumberActive : styles.stepNumberDisabled]}>
+                <Text style={styles.stepNumberText}>2</Text>
+              </View>
+              <Text style={[styles.stepTitle, !correctedAPI && styles.stepTitleDisabled]}>
+                Weight from Volume
+              </Text>
             </View>
 
-            {correctedAPI ? (
-              <View style={[styles.statusCard, styles.statusSuccess]}>
-                <Text style={[styles.statusText, { color: '#22543d' }]}>● API Gravity Calculated</Text>
+            <View style={[styles.stepCard, !correctedAPI && styles.stepCardDisabled]}>
+              <View style={styles.inputRow}>
+                <View style={[styles.inputGroup, styles.halfWidth]}>
+                  <Text style={styles.label}>Volume</Text>
+                  <TextInput
+                    style={[styles.input, !correctedAPI && styles.inputDisabled]}
+                    placeholder="Enter Volume"
+                    placeholderTextColor="#a0a0a0"
+                    keyboardType="numeric"
+                    value={volume}
+                    onChangeText={setVolume}
+                    editable={!!correctedAPI}
+                  />
+                </View>
+                <View style={[styles.inputGroup, styles.halfWidth]}>
+                  <Text style={styles.label}>Unit</Text>
+                  <SegmentedControl
+                    options={['Gallons', 'Litres']}
+                    selectedValue={volumeUnit}
+                    onValueChange={setVolumeUnit}
+                  />
+                </View>
               </View>
-            ) : (
-              <View style={[styles.statusCard, styles.statusWarning]}>
-                <Text style={[styles.statusText, { color: '#c05621' }]}>▲ Calculate API Gravity First</Text>
-              </View>
-            )}
 
-            <View style={styles.inputRow}>
-              <View style={[styles.inputGroup, styles.halfWidth]}>
-                <Text style={styles.label}>Volume</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Enter Volume"
-                  placeholderTextColor="#a0a0a0"
-                  keyboardType="numeric"
-                  value={volume}
-                  onChangeText={setVolume}
-                />
-              </View>
+              {weight ? (
+                <View style={styles.resultCard}>
+                  <Text style={styles.resultText}>{weight}</Text>
+                </View>
+              ) : null}
 
-              <View style={[styles.inputGroup, styles.halfWidth]}>
-                <Text style={styles.label}>Volume Unit</Text>
-                <SegmentedControl
-                  options={['Gallons', 'Litres']}
-                  selectedValue={volumeUnit}
-                  onValueChange={setVolumeUnit}
-                />
+              <View style={styles.buttonRow}>
+                <Pressable 
+                  style={({ pressed }) => [
+                    styles.primaryButton, 
+                    !correctedAPI && styles.disabledButton,
+                    pressed && correctedAPI && styles.primaryButtonPressed
+                  ]}
+                  onPress={calculateWeight}
+                  disabled={!correctedAPI}
+                >
+                  <Text style={[styles.primaryButtonText, !correctedAPI && styles.disabledButtonText]}>
+                    Calculate Weight
+                  </Text>
+                </Pressable>
+                <Pressable 
+                  style={({ pressed }) => [
+                    styles.resetButton,
+                    pressed && styles.resetButtonPressed
+                  ]}
+                  onPress={resetVolumeSection}
+                >
+                  <Text style={styles.resetButtonText}>Reset</Text>
+                </Pressable>
               </View>
-            </View>
-
-            {weight ? (
-              <View style={styles.resultCard}>
-                <Text style={styles.resultText}>{weight}</Text>
-              </View>
-            ) : null}
-
-            <View style={styles.buttonRow}>
-              <Pressable 
-                style={({ pressed }) => [
-                  styles.primaryButton, 
-                  !correctedAPI && styles.disabledButton,
-                  pressed && !correctedAPI && styles.primaryButtonPressed
-                ]}
-                onPress={calculateWeight}
-                disabled={!correctedAPI}
-              >
-                <Text style={[styles.primaryButtonText, !correctedAPI && styles.disabledButtonText]}>
-                  Calculate Weight
-                </Text>
-              </Pressable>
-              <Pressable 
-                style={({ pressed }) => [
-                  styles.resetButton,
-                  pressed && styles.resetButtonPressed
-                ]}
-                onPress={resetVolumeSection}
-              >
-                <Text style={styles.resetButtonText}>Reset</Text>
-              </Pressable>
             </View>
           </View>
 
           {/* Contact Section */}
-          <TouchableOpacity style={styles.contactCard} onPress={handleContactUs}>
-            <View style={styles.contactContent}>
-              <Text style={styles.contactTitle}>Need Help?</Text>
-              <Text style={styles.contactSubtitle}>Contact Gammon Technical Products</Text>
-              <View style={styles.contactButtons}>
-                <View style={styles.contactButton}>
-                  <Text style={styles.contactButtonText}>◉ Visit Website</Text>
-                </View>
-                <View style={styles.contactButton}>
-                  <Text style={styles.contactButtonText}>✉ Email Support</Text>
+          <View style={styles.contactSection}>
+            <TouchableOpacity style={styles.contactCard} onPress={handleContactUs}>
+              <View style={styles.contactContent}>
+                <Text style={styles.contactTitle}>Need Help?</Text>
+                <View style={styles.contactButtons}>
+                  <View style={styles.contactButton}>
+                    <Text style={styles.contactButtonText}>◉ Visit Website</Text>
+                  </View>
+                  <View style={styles.contactButton}>
+                    <Text style={styles.contactButtonText}>✉ Email Support</Text>
+                  </View>
                 </View>
               </View>
-            </View>
-          </TouchableOpacity>
-        </ScrollView>
+            </TouchableOpacity>
+          </View>
+        </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -397,36 +400,104 @@ const styles = StyleSheet.create({
   headerGradient: {
     alignItems: 'center',
     backgroundColor: '#1a365d',
-    borderRadius: 20,
-    paddingVertical: 20,
-    paddingHorizontal: 24,
+    borderRadius: 16,
+    paddingVertical: 16,
+    paddingHorizontal: 20,
     shadowColor: '#1a365d',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.3,
-    shadowRadius: 16,
-    elevation: 8,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.25,
+    shadowRadius: 12,
+    elevation: 6,
   },
   headerTitle: {
-    fontSize: 32,
-    fontWeight: '800',
+    fontSize: 26,
+    fontWeight: '700',
     color: '#ffffff',
-    marginBottom: 6,
+    marginBottom: 4,
     textAlign: 'center',
-    letterSpacing: -0.5,
+    letterSpacing: -0.3,
   },
   headerSubtitle: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#e2e8f0',
     textAlign: 'center',
     fontWeight: '500',
     opacity: 0.9,
   },
-  scrollView: {
+  processContainer: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingBottom: 30,
+  },
+  stepContainer: {
+    marginBottom: 24,
+  },
+  stepHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  stepNumber: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 16,
+  },
+  stepNumberActive: {
+    backgroundColor: '#3182ce',
+    shadowColor: '#3182ce',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  stepNumberComplete: {
+    backgroundColor: '#38a169',
+    shadowColor: '#38a169',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  stepNumberDisabled: {
+    backgroundColor: '#a0aec0',
+  },
+  stepNumberText: {
+    color: '#ffffff',
+    fontSize: 18,
+    fontWeight: '700',
+  },
+  stepTitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#2d3748',
     flex: 1,
   },
-  scrollContent: {
-    padding: 16,
-    paddingBottom: 32,
+  stepTitleDisabled: {
+    color: '#a0aec0',
+  },
+  stepCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 8,
+    elevation: 3,
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+  },
+  stepCardDisabled: {
+    backgroundColor: '#f7fafc',
+    borderColor: '#e2e8f0',
+  },
+  inputDisabled: {
+    backgroundColor: '#f7fafc',
+    borderColor: '#e2e8f0',
+    color: '#a0aec0',
   },
   card: {
     backgroundColor: '#ffffff',
@@ -650,11 +721,13 @@ const styles = StyleSheet.create({
   disabledButtonText: {
     color: '#ffffff',
   },
+  contactSection: {
+    marginTop: 8,
+  },
   contactCard: {
     backgroundColor: '#ffffff',
     borderRadius: 16,
     padding: 20,
-    marginTop: 8,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,

@@ -305,7 +305,12 @@ function AppContent() {
           {/* Step 2: Weight Calculation */}
           <View style={styles.stepContainer}>
             <View style={styles.stepHeader}>
-              <View style={[styles.stepNumber, correctedAPI ? styles.stepNumberActive : styles.stepNumberDisabled]}>
+              <View style={[
+                styles.stepNumber, 
+                weight ? styles.stepNumberComplete : 
+                correctedAPI ? styles.stepNumberActive : 
+                styles.stepNumberDisabled
+              ]}>
                 <Text style={styles.stepNumberText}>2</Text>
               </View>
               <Text style={[styles.stepTitle, !correctedAPI && styles.stepTitleDisabled]}>

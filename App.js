@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Pressable,
   ScrollView,
-  SafeAreaView,
   StatusBar,
   Linking,
   Alert,
@@ -15,10 +14,11 @@ import {
   KeyboardAvoidingView,
   Dimensions,
 } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 const { width } = Dimensions.get('window');
 
-export default function App() {
+function AppContent() {
   // API Correction Section State
   const [apiGravity, setApiGravity] = useState('');
   const [temperature, setTemperature] = useState('');
@@ -776,3 +776,11 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
   },
 });
+
+export default function App() {
+  return (
+    <SafeAreaProvider>
+      <AppContent />
+    </SafeAreaProvider>
+  );
+}

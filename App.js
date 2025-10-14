@@ -13,6 +13,7 @@ import {
   Platform,
   KeyboardAvoidingView,
   Dimensions,
+  Keyboard,
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
@@ -216,7 +217,12 @@ function AppContent() {
         </View>
 
         {/* Step-by-Step Process */}
-        <View style={styles.processContainer}>
+        <ScrollView 
+          style={styles.scrollView} 
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
           {/* Step 1: API Correction */}
           <View style={styles.stepContainer}>
             <View style={styles.stepHeader}>
@@ -239,6 +245,8 @@ function AppContent() {
                     keyboardType="numeric"
                     value={temperature}
                     onChangeText={setTemperature}
+                    returnKeyType="done"
+                    onSubmitEditing={Keyboard.dismiss}
                   />
                 </View>
                 <View style={[styles.inputGroup, styles.halfWidth]}>
@@ -260,6 +268,8 @@ function AppContent() {
                   keyboardType="numeric"
                   value={apiGravity}
                   onChangeText={setApiGravity}
+                  returnKeyType="done"
+                  onSubmitEditing={Keyboard.dismiss}
                 />
               </View>
 
@@ -315,6 +325,8 @@ function AppContent() {
                     value={volume}
                     onChangeText={setVolume}
                     editable={!!correctedAPI}
+                    returnKeyType="done"
+                    onSubmitEditing={Keyboard.dismiss}
                   />
                 </View>
                 <View style={[styles.inputGroup, styles.halfWidth]}>
@@ -376,7 +388,7 @@ function AppContent() {
               </View>
             </TouchableOpacity>
           </View>
-        </View>
+        </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -424,8 +436,10 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     opacity: 0.9,
   },
-  processContainer: {
+  scrollView: {
     flex: 1,
+  },
+  scrollContent: {
     paddingHorizontal: 20,
     paddingBottom: 30,
   },

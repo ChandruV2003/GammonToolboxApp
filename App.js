@@ -368,7 +368,7 @@ function AppContent() {
                 <Pressable 
                   style={({ pressed }) => [
                     styles.resetButton,
-                    !correctedAPI && styles.disabledButton,
+                    !correctedAPI && styles.disabledResetButton,
                     pressed && correctedAPI && styles.resetButtonPressed
                   ]}
                   onPress={resetVolumeSection}
@@ -741,7 +741,12 @@ const styles = StyleSheet.create({
   disabledButton: {
     backgroundColor: '#f7fafc',
     borderColor: '#e2e8f0',
-    borderWidth: 1.5,
+    shadowOpacity: 0,
+    elevation: 0,
+  },
+  disabledResetButton: {
+    backgroundColor: '#f7fafc',
+    borderColor: '#e2e8f0',
     shadowOpacity: 0,
     elevation: 0,
   },

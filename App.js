@@ -335,11 +335,12 @@ function AppContent() {
                   />
                 </View>
                 <View style={[styles.inputGroup, styles.halfWidth]}>
-                  <Text style={styles.label}>Unit</Text>
+                  <Text style={[styles.label, !correctedAPI && styles.labelDisabled]}>Unit</Text>
                   <SegmentedControl
                     options={['Gallons', 'Litres']}
                     selectedValue={volumeUnit}
                     onValueChange={setVolumeUnit}
+                    disabled={!correctedAPI}
                   />
                 </View>
               </View>
@@ -367,11 +368,13 @@ function AppContent() {
                 <Pressable 
                   style={({ pressed }) => [
                     styles.resetButton,
-                    pressed && styles.resetButtonPressed
+                    !correctedAPI && styles.disabledButton,
+                    pressed && correctedAPI && styles.resetButtonPressed
                   ]}
                   onPress={resetVolumeSection}
+                  disabled={!correctedAPI}
                 >
-                  <Text style={styles.resetButtonText}>Reset</Text>
+                  <Text style={[styles.resetButtonText, !correctedAPI && styles.disabledButtonText]}>Reset</Text>
                 </Pressable>
               </View>
             </View>
@@ -562,6 +565,9 @@ const styles = StyleSheet.create({
     color: '#2d3748',
     marginBottom: 8,
   },
+  labelDisabled: {
+    color: '#a0aec0',
+  },
   input: {
     borderWidth: 1.5,
     borderColor: '#e2e8f0',
@@ -738,7 +744,7 @@ const styles = StyleSheet.create({
     elevation: 0,
   },
   disabledButtonText: {
-    color: '#ffffff',
+    color: '#a0aec0',
   },
   contactSection: {
     marginTop: 8,

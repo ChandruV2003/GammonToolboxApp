@@ -739,7 +739,9 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.98 }],
   },
   disabledButton: {
-    backgroundColor: '#a0aec0',
+    backgroundColor: '#f7fafc',
+    borderColor: '#e2e8f0',
+    borderWidth: 1.5,
     shadowOpacity: 0,
     elevation: 0,
   },

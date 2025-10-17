@@ -50,3 +50,4 @@ echo "  SETUP.md - Detailed setup guide"
 echo "  DEPLOYMENT_GUIDE.md - Deployment instructions"
 echo ""
 echo "🌐 To start the app: npm start"
+

@@ -189,3 +189,4 @@ The project is successfully shared when:
 4. They clone and run: `./setup.sh && npm start`
 
 **Or simply zip the folder and share!**
+

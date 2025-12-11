@@ -26,11 +26,13 @@ function AppContent() {
   const [fuelType, setFuelType] = useState('Jet A/Kerosene');
   const [tempUnit, setTempUnit] = useState('Fahrenheit');
   const [correctedAPI, setCorrectedAPI] = useState('');
+  const [apiCalculated, setApiCalculated] = useState(false);
 
   // Weight Calculation Section State
   const [volume, setVolume] = useState('');
   const [volumeUnit, setVolumeUnit] = useState('Gallons');
   const [weight, setWeight] = useState('');
+  const [weightCalculated, setWeightCalculated] = useState(false);
 
   // Internal state for calculations
   const [rhoInitial, setRhoInitial] = useState(0);
@@ -92,6 +94,7 @@ function AppContent() {
     api_corrected = Math.round(api_corrected * 10) / 10;
 
     setCorrectedAPI(`Corrected API Gravity: ${api_corrected.toFixed(1)}`);
+    setApiCalculated(true);
   };
 
   // Calculate Weight
@@ -120,6 +123,7 @@ function AppContent() {
       mass = rhoInitial * volume_m3;
       setWeight(`Fuel Weight: ${mass.toFixed(1)} kgs`);
     }
+    setWeightCalculated(true);
   };
 
   // Reset API Section
@@ -129,6 +133,7 @@ function AppContent() {
     setFuelType('Jet A/Kerosene');
     setTempUnit('Fahrenheit');
     setCorrectedAPI('');
+    setApiCalculated(false);
     setRhoInitial(0);
   };
 
@@ -137,6 +142,38 @@ function AppContent() {
     setVolume('');
     setVolumeUnit('Gallons');
     setWeight('');
+    setWeightCalculated(false);
+  };
+
+  // Handlers for input changes that reset calculation state
+  const handleApiGravityChange = (value) => {
+    setApiGravity(value);
+    setApiCalculated(false);
+  };
+
+  const handleTemperatureChange = (value) => {
+    setTemperature(value);
+    setApiCalculated(false);
+  };
+
+  const handleFuelTypeChange = (value) => {
+    setFuelType(value);
+    setApiCalculated(false);
+  };
+
+  const handleTempUnitChange = (value) => {
+    setTempUnit(value);
+    setApiCalculated(false);
+  };
+
+  const handleVolumeChange = (value) => {
+    setVolume(value);
+    setWeightCalculated(false);
+  };
+
+  const handleVolumeUnitChange = (value) => {
+    setVolumeUnit(value);
+    setWeightCalculated(false);
   };
 
   // Contact Us
@@ -187,7 +224,7 @@ function AppContent() {
               styles.fuelTypeButton,
               fuelType === fuel && styles.fuelTypeButtonActive
             ]}
-            onPress={() => setFuelType(fuel)}
+            onPress={() => handleFuelTypeChange(fuel)}
           >
             <Text style={[
               styles.fuelTypeButtonText,
@@ -244,7 +281,7 @@ function AppContent() {
                     placeholderTextColor="#a0a0a0"
                     keyboardType="numeric"
                     value={temperature}
-                    onChangeText={setTemperature}
+                    onChangeText={handleTemperatureChange}
                     returnKeyType="done"
                     onSubmitEditing={Keyboard.dismiss}
                   />
@@ -254,7 +291,7 @@ function AppContent() {
                   <SegmentedControl
                     options={['Fahrenheit', 'Celsius']}
                     selectedValue={tempUnit}
-                    onValueChange={setTempUnit}
+                    onValueChange={handleTempUnitChange}
                   />
                 </View>
               </View>
@@ -267,7 +304,7 @@ function AppContent() {
                   placeholderTextColor="#a0a0a0"
                   keyboardType="numeric"
                   value={apiGravity}
-                  onChangeText={setApiGravity}
+                  onChangeText={handleApiGravityChange}
                   returnKeyType="done"
                   onSubmitEditing={Keyboard.dismiss}
                 />
@@ -283,11 +320,14 @@ function AppContent() {
                 <Pressable 
                   style={({ pressed }) => [
                     styles.primaryButton,
-                    pressed && styles.primaryButtonPressed
+                    apiCalculated && styles.primaryButtonCalculated,
+                    pressed && !apiCalculated && styles.primaryButtonPressed
                   ]}
                   onPress={calculateAPI}
                 >
-                  <Text style={styles.primaryButtonText}>Calculate API</Text>
+                  <Text style={styles.primaryButtonText}>
+                    {apiCalculated ? '✓ Calculated' : 'Calculate API'}
+                  </Text>
                 </Pressable>
                 <Pressable 
                   style={({ pressed }) => [
@@ -328,7 +368,7 @@ function AppContent() {
                     placeholderTextColor="#a0a0a0"
                     keyboardType="numeric"
                     value={volume}
-                    onChangeText={setVolume}
+                    onChangeText={handleVolumeChange}
                     editable={!!correctedAPI}
                     returnKeyType="done"
                     onSubmitEditing={Keyboard.dismiss}
@@ -339,7 +379,7 @@ function AppContent() {
                   <SegmentedControl
                     options={['Gallons', 'Litres']}
                     selectedValue={volumeUnit}
-                    onValueChange={setVolumeUnit}
+                    onValueChange={handleVolumeUnitChange}
                     disabled={!correctedAPI}
                   />
                 </View>
@@ -356,13 +396,14 @@ function AppContent() {
                   style={({ pressed }) => [
                     styles.primaryButton, 
                     !correctedAPI && styles.disabledButton,
-                    pressed && correctedAPI && styles.primaryButtonPressed
+                    weightCalculated && correctedAPI && styles.primaryButtonCalculated,
+                    pressed && correctedAPI && !weightCalculated && styles.primaryButtonPressed
                   ]}
                   onPress={calculateWeight}
                   disabled={!correctedAPI}
                 >
                   <Text style={[styles.primaryButtonText, !correctedAPI && styles.disabledButtonText]}>
-                    Calculate Weight
+                    {weightCalculated ? '✓ Calculated' : 'Calculate Weight'}
                   </Text>
                 </Pressable>
                 <Pressable 
@@ -710,6 +751,10 @@ const styles = StyleSheet.create({
   primaryButtonPressed: {
     backgroundColor: '#2c5282',
     transform: [{ scale: 0.98 }],
+  },
+  primaryButtonCalculated: {
+    backgroundColor: '#38a169',
+    shadowColor: '#38a169',
   },
   resetButton: {
     flex: 1,
